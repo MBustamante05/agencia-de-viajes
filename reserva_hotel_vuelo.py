@@ -101,10 +101,11 @@ destinos_hoteles = {
     ]
 }
 
-    # Lista para almacenar los paquetes turísticos como diccionarios
+#Lógica Oscar
+# Lista para almacenar los paquetes turísticos como diccionarios
 paquetes = []
 
-    # Función para agregar un paquete turístico a la lista
+# Función para agregar un paquete turístico a la lista
 def agregar_paquete(id_paquete, nombre, destino, duracion, duracion2, precio, descripcion):
         paquete = {
             'id_paquete': id_paquete,
@@ -117,17 +118,78 @@ def agregar_paquete(id_paquete, nombre, destino, duracion, duracion2, precio, de
         }
         paquetes.append(paquete)
 
-    # Función para mostrar todos los paquetes turísticos
+# Función para mostrar todos los paquetes turísticos
 def mostrar_paquetes():
+        print("--------------------------------------------------------------------------------")
         if paquetes:
             print("Elige el paquete que más se adapte a tus gustos y necesidades.")
             print("Estos son los paquetes turísticos disponibles:")
+            print("--------------------------------------------------------------------------------")
             for i, paquete in enumerate(paquetes, 1):
                 print(f"{i}. {paquete['nombre']} a {paquete['destino']} por {paquete['duracion']} días y {paquete['duracion2']} noches - Precio: ${paquete['precio']}")
 
-    # Función para que el usuario escoja un paquete y mostrarlo
+#Función de factura del paquete (destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+def pago_paquete(precio_total):
+    print("-----------------------------------------")
+    print("Métodos de pago:")
+    print("1. Tarjeta de Crédito/Débito.")
+    print("2. PSE")
+    print("-----------------------------------------")
+    while True:
+        opcion_pago = int(input("Ingrese el número de la opción con la cual desea continuar: "))
+        if opcion_pago == 1:
+            print("-----------------------------------------")
+            nombre = input("Ingrese su nombre completo: ")
+            tarjeta_num = input("Ingrese el número de la tarjeta de pago: ")
+            factura_paquete(nombre,precio_total)
+            break
+        elif opcion_pago == 2:
+            print("-----------------------------------------")
+            banco_nombre = input("Escribir nombre del banco: ")
+            nombre = input("Ingrese su nombre completo: ")
+            correo_pago = input("Ingrese su correo: ")
+            clave_dinamica = input("Ingrese su clave dinámica: ")
+            factura_paquete(nombre,precio_total)
+            break
+        else:
+            print("-----------------------------------------")
+            print("Opción inválida. Vuelva a intentarlo.")
+
+
+#Función para factura de paquete
+def factura_paquete(nombre, precio_total):
+    time.sleep(3)
+    print("-----------------------------------------")
+    print("Pago exitoso.\nGracias por utilizar nuestros servicios.\n")
+    time.sleep(1)
+    print("-----------------------------------------")
+    print("1. Recibir factura.")
+    print("2. Salir.")
+    while True:
+        opcion_factura = int(input("Ingrese el número de la opción con la cual desea continuar: "))
+        if opcion_factura == 1:
+            time.sleep(3)
+            print("-----------------------------------------")
+            print("---------------PAGO ACEPTADO-------------")
+            print("----------paquete todo incluído----------")
+            print(f"Cliente:         {nombre}")
+            print(f"Total:           {precio_total}")
+            print("-----------------------------------------")
+            print(f"Pagado:         -${precio_total}")
+            print("-----------------------------------------")
+
+            break
+        elif opcion_factura == 2:
+            print("Gracias por utilizar nuestros servicios. Vuelve pronto!!")
+            break
+        else:
+            print("Opción errada. Inténtelo de nuevo.")
+
+# Función para que el usuario escoja un paquete y mostrarlo
 def seccion_paquetes():
-        mostrar_paquetes()
+    mostrar_paquetes()
+    print("--------------------------------------------------------------------------------")
+    while True: 
         opcion = int(input("Introduce el número del paquete que deseas escoger: "))
         
         if opcion <= len(paquetes):
@@ -138,10 +200,24 @@ def seccion_paquetes():
             print(f"Duración: {paquete_seleccionado['duracion']} días y {paquete_seleccionado['duracion2']} noches")
             print(f"Precio: ${paquete_seleccionado['precio']}")
             print(f"Descripción: {paquete_seleccionado['descripcion']}")
+            print("--------------------------------------------------------------------------------\n")
+            while True:
+                confirma_factura = input("Confirma las opciones de su paquete? (y-n): ")
+                if confirma_factura == "y":
+                    print("Redirigiendo...")
+                    time.sleep(4)
+                    pago_paquete(paquete_seleccionado['precio'])
+                    break
+                elif confirma_factura == "n":
+                    seccion_paquetes()
+                    break
+                else:
+                    print("Opción inválida. Por favor, ingrese 'y' o 'n'.")
+            break
         else:
             print("Opción inválida. Por favor, selecciona un número de la lista.")
 
-    # Agregar los paquetes
+# Agregar los paquetes
 agregar_paquete(1, "Aventura Urbana", "Nueva York", 7, 6, 5500000, "Incluye alojamiento en hotel céntrico y visitas guiadas a museos.")
 agregar_paquete(2, "Escapada Romántica", "Paris", 6, 5, 6800000, "Incluye hotel cerca de la Torre Eiffel y cena en crucero por el Sena.")
 agregar_paquete(3, "Exploración Cultural", "Ciudad de México", 5, 4, 4200000, "Incluye hotel en el centro histórico y tours gastronómicos.")
@@ -155,31 +231,135 @@ agregar_paquete(10, "Escape al Caribe", "La Habana", 6, 5, 5100000, "Incluye hot
 
 
 
-
-
-#Lógica
-def hoteles_destinos_separados():
-    print("\n-- Estos son los destinos disponibles: --\n")
-    #Mostrar vuelos disponibles
-    for destino in destinos_hoteles.keys():
-        print(destino)
-
-    #Escoger destino
+#Lógica María
+def mostrar_detalle_factura(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total):
+    print(f"Destino:         {destino}")
+    print(f"Hotel:           {hotel}")
+    print(f"Vuelo:           {vuelo}")
+    print(f"Fecha-ida:       {fecha_ida}")
+    print(f"Fecha-regreso:   {fecha_regreso}")
     print("-----------------------------------------")
-    destino_usuario = input("Ingrese su destino: ").lower()
+    print(f"Total:           ${precio_total}")
 
-    #Mostrar hoteles disponibles
-    def hotel_destino(destino):
+#Llamar a la función
+    
+#FUNCIÓN PARA PROCEDER CON LA FACTURA para no repetir todo un código dos veces
+def funcion_para_factura(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total):
+    time.sleep(3)
+    print("-----------------------------------------")
+    print("Pago exitoso.\nGracias por utilizar nuestros servicios.\n")
+    time.sleep(1)
+    print("-----------------------------------------")
+    print("1. Recibir factura.")
+    print("2. Salir.")
+    while True:
+        opcion_factura = int(input("Ingrese el número de la opción con la cual desea continuar: "))
+        if opcion_factura == 1:
+            time.sleep(3)
+            factura_usuario(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+            break
+        elif opcion_factura == 2:
+            print("Gracias por utilizar nuestros servicios. Vuelve pronto!!")
+            break
+        else:
+            print("Opción errada. Inténtelo de nuevo.")
+
+#FUNCIÓN DE PAGO
+def pago(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total):
+    print("-----------------------------------------")
+    print("Métodos de pago:")
+    print("1. Tarjeta de Crédito/Débito.")
+    print("2. PSE")
+    print("-----------------------------------------")
+    while True:
+        opcion_pago = int(input("Ingrese el número de la opción con la cual desea continuar: "))
+        time.sleep(3)
+        if opcion_pago == 1:
+            print("-----------------------------------------")
+            nombre = input("Ingrese su nombre completo: ")
+            tarjeta_num = input("Ingrese el número de la tarjeta de pago: ")
+            funcion_para_factura(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+            break
+        elif opcion_pago == 2:
+            print("-----------------------------------------")
+            banco_nombre = input("Escribir nombre del banco: ")
+            nombre = input("Ingrese su nombre completo: ")
+            correo_pago = input("Ingrese su correo: ")
+            clave_dinamica = input("Ingrese su clave dinámica: ")
+            funcion_para_factura(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+            break
+        else:
+            print("-----------------------------------------")
+            print("Opción inválida. Vuelva a intentarlo.")
+
+        
+#FUNCIÓN FACTURA
+def factura_usuario(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total):
+    print("-----------------------------------------")
+    print("---------------PAGO ACEPTADO-------------")
+    print(f"Cliente:         {nombre}")
+    mostrar_detalle_factura(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+    print(f"Pagado:         -${precio_total}")
+    print("-----------------------------------------")
+
+def confirmar_y_pagar(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total):
+    mostrar_detalle_factura(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+    while True:
+        confirma = input("Confirma las opciones de su factura? (y-n): ").lower()
+        if confirma == "y":
+            print("Espere unos segundos mientras se redirige a la página de pago...\n")
+            time.sleep(5)
+            pago(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
+            break 
+        elif confirma == "n":
+            print("-----------------------------------------")
+            print("1. Terminar proceso.")
+            print("2. Cambiar opciones de vuelo.")
+            while True:
+                try:
+                    salir_o_cambiar = int(input("Ingrese el número de la opción con la cual desea continuar (1-2): "))
+                    if salir_o_cambiar == 1:
+                        print("Gracias por acceder a nuestros servicios.")
+                        return  
+                    elif salir_o_cambiar == 2:
+                        hoteles_destinos_separados()
+                        return 
+                    else:
+                        print("Opción errada.")
+                except ValueError:
+                    print("Por favor, ingrese un número válido (1 o 2).")
+        else:
+            print("Opción errada. Ingrese una opción válida (y-n).")
+
+
+def hoteles_destinos_separados():
+    while True:
+        time.sleep(3)
+        print("\n-- Estos son los destinos disponibles: --\n")
+        # Mostrar destinos disponibles
+        for destino in destinos_hoteles.keys():
+            print(destino)
+
+        # Escoger destino
+        print("-----------------------------------------")
+        destino_usuario = input("Ingrese su destino: ").lower()
+
+        #mostrar hoteles disponibles
         cuenta = 0
+        destino_encontrado = False  # mostrar si el destino existe
         for lugar in destinos_hoteles.keys():
-            if destino == lugar.lower():
+            if destino_usuario == lugar.lower():
+                destino_encontrado = True
                 print("Hoteles disponibles: \n")
                 for hotel in destinos_hoteles[lugar][0]:
                     cuenta += 1
                     print(f"{cuenta}. {hotel}.")
-        return "Destino no encontrado"
 
-    hotel_destino(destino_usuario)
+        if destino_encontrado:
+            break 
+        else:
+            print("Destino no encontrado. Por favor, intente de nuevo.")
+
     print("-----------------------------------------")
     #Evitar colocar un index fuera del rango
     while True:
@@ -207,101 +387,10 @@ def hoteles_destinos_separados():
     #Sacar el nombre del hotel para colocarlo en la factura
     hotel_escogido_nombre = destinos_hoteles[destino_primera_mayus][0][hotel_usuario - 1]
     precio_hotel_mas_destino = destinos_hoteles[destino_primera_mayus][1][hotel_usuario - 1]
-    #Mostrar factura antes de aceptar
-    def confirma_factura():
-        print(f"Destino:         {destino_primera_mayus}")
-        print(f"Hotel:           {hotel_escogido_nombre}")
-        print(f"Vuelo:           {vuelo}")
-        print(f"Fecha-ida:       {fecha_ida}")
-        print(f"Fecha-regreso:   {fecha_regreso}")
-        print("-----------------------------------------")
-        print(f"Total:           ${precio_hotel_mas_destino + vuelo_precio}")
-    #Llamar a la función
-    confirma_factura()
-    #FUNCIÓN PARA PROCEDER CON LA FACTURA para no repetir todo un código dos veces
-    def funcion_para_factura(nombre):
-        time.sleep(3)
-        print("-----------------------------------------")
-        print("Pago exitoso.\nGracias por utilizar nuestros servicios.\n")
-        time.sleep(1)
-        print("-----------------------------------------")
-        print("1. Recibir factura.")
-        print("2. Salir.")
-        opcion_factura = int(input("Ingrese el número de la opción con la cual desea continuar: "))
-        while True:
-            if opcion_factura == 1:
-                time.sleep(3)
-                factura_usuario(nombre)
-                break
-            elif opcion_factura == 2:
-                break
-            else:
-                print("Opción errada. Inténtelo de nuevo.")
-    #FUNCIÓN DE PAGO
-    def pago():
-        print("-----------------------------------------")
-        print("Métodos de pago:")
-        print("1. Tarjeta de Crédito/Débito.")
-        print("2. PSE")
-        print("-----------------------------------------")
-        opcion_pago = int(input("Ingrese el número de la opción con la cual desea continuar: "))
-        time.sleep(3)
-        while True:
-            if opcion_pago == 1:
-                print("-----------------------------------------")
-                nombre = input("Ingrese su nombre completo: ")
-                tarjeta_num = input("Ingrese el número de la tarjeta de pago: ")
-                funcion_para_factura(nombre)
-                break
-            elif opcion_pago == 2:
-                print("-----------------------------------------")
-                banco_nombre = input("Escribir nombre del banco: ")
-                nombre = input("Ingrese su nombre completo: ")
-                correo_pago = input("Ingrese su correo: ")
-                clave_dinamica = input("Ingrese su clave dinámica: ")
-                funcion_para_factura(nombre)
-                break
-            else:
-                print("-----------------------------------------")
-                print("Opción inválida. Vuelva a intentarlo.")
-          
-    #FUNCIÓN FACTURA
-    def factura_usuario(nombre):
-        print("-----------------------------------------")
-        print("---------------PAGO ACEPTADO-------------")
-        print(f"Cliente:         {nombre}")
-        confirma_factura()
-        print(f"Pagado:         -${precio_hotel_mas_destino + vuelo_precio}")
-        print("-----------------------------------------")
-    #Opción de aceptar o nó
-    while True:
-        confirma = input("Confirma las opciones de su factura? (y-n): ").lower()
-        if confirma == "y":
-            print("Espere unos segundos mientras se redirige a la página de pago...\n")
-            time.sleep(5)
-            pago()
-            break 
-        elif confirma == "n":
-            print("-----------------------------------------")
-            print("1. Terminar proceso.")
-            print("2. Cambiar opciones de vuelo.")
-            while True:  # Bucle para salir o cambiar
-                try: #Maneja errores de conversión a la hora de entrar el número
-                    salir_o_cambiar = int(input("Ingrese el número de la opción con la cual desea continuar (1-2): "))
-                    if salir_o_cambiar == 1:
-                        print("Gracias por acceder a nuestros servicios.")
-                        break 
-                    elif salir_o_cambiar == 2:
-                        hoteles_destinos_separados()
-                        break  
-                    else:
-                        print("Opción errada.")
-                except ValueError:
-                    print("Por favor, ingrese un número válido (1 o 2).")
-            break  
-        else:
-            print("Opción errada. Ingrese una opción válida (y-n).")
-
+    
+    #Llamar a las otras funciones
+    precio_total = precio_hotel_mas_destino + vuelo_precio
+    confirmar_y_pagar(destino_primera_mayus, hotel_escogido_nombre, vuelo, fecha_ida, fecha_regreso, precio_total)
 
 #Opciones entre servicio normal de la agencia o paquetes de oferta
 print("--------------BIENVENIDO/A---------------")
@@ -313,7 +402,7 @@ while True: #Evitar una opción fuera del rango
   opcion = int(input("Ingrese el número de la opción con la cual desea continuar: "))
   if opcion == 1:
     print("Redirigiendo...")
-    time.sleep(4)
+    time.sleep(1)
     hoteles_destinos_separados()
     break
   elif opcion == 2:
