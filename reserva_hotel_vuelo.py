@@ -100,8 +100,62 @@ destinos_hoteles = {
         [4300000, 5800000, 3600000]
     ]
 }
-#Agregar función Oscar
-#
+
+    # Lista para almacenar los paquetes turísticos como diccionarios
+paquetes = []
+
+    # Función para agregar un paquete turístico a la lista
+def agregar_paquete(id_paquete, nombre, destino, duracion, duracion2, precio, descripcion):
+        paquete = {
+            'id_paquete': id_paquete,
+            'nombre': nombre,
+            'destino': destino,
+            'duracion': duracion,  # Duración en días
+            'duracion2': duracion2,  # Duración en noches
+            'precio': precio,
+            'descripcion': descripcion
+        }
+        paquetes.append(paquete)
+
+    # Función para mostrar todos los paquetes turísticos
+def mostrar_paquetes():
+        if paquetes:
+            print("Elige el paquete que más se adapte a tus gustos y necesidades.")
+            print("Estos son los paquetes turísticos disponibles:")
+            for i, paquete in enumerate(paquetes, 1):
+                print(f"{i}. {paquete['nombre']} a {paquete['destino']} por {paquete['duracion']} días y {paquete['duracion2']} noches - Precio: ${paquete['precio']}")
+
+    # Función para que el usuario escoja un paquete y mostrarlo
+def seccion_paquetes():
+        mostrar_paquetes()
+        opcion = int(input("Introduce el número del paquete que deseas escoger: "))
+        
+        if opcion <= len(paquetes):
+            paquete_seleccionado = paquetes[opcion - 1]
+            print("\nHas seleccionado el siguiente paquete:")
+            print(f"Nombre: {paquete_seleccionado['nombre']}")
+            print(f"Destino: {paquete_seleccionado['destino']}")
+            print(f"Duración: {paquete_seleccionado['duracion']} días y {paquete_seleccionado['duracion2']} noches")
+            print(f"Precio: ${paquete_seleccionado['precio']}")
+            print(f"Descripción: {paquete_seleccionado['descripcion']}")
+        else:
+            print("Opción inválida. Por favor, selecciona un número de la lista.")
+
+    # Agregar los paquetes
+agregar_paquete(1, "Aventura Urbana", "Nueva York", 7, 6, 5500000, "Incluye alojamiento en hotel céntrico y visitas guiadas a museos.")
+agregar_paquete(2, "Escapada Romántica", "Paris", 6, 5, 6800000, "Incluye hotel cerca de la Torre Eiffel y cena en crucero por el Sena.")
+agregar_paquete(3, "Exploración Cultural", "Ciudad de México", 5, 4, 4200000, "Incluye hotel en el centro histórico y tours gastronómicos.")
+agregar_paquete(4, "Safari Urbano", "Tokio", 8, 7, 7200000, "Incluye alojamiento en hotel de lujo y paseos por la ciudad y alrededores.")
+agregar_paquete(5, "Ruta Histórica", "Roma", 6, 5, 6500000, "Incluye hotel en el centro de Roma y visitas guiadas al Coliseo y Vaticano.")
+agregar_paquete(6, "Aventura en el Desierto", "Dubai", 7, 6, 8200000, "Incluye hotel de lujo, safari por el desierto y crucero nocturno.")
+agregar_paquete(7, "Exploración Asiática", "Bangkok", 6, 5, 5900000, "Incluye alojamiento y visitas a templos y mercados flotantes.")
+agregar_paquete(8, "Cultura y Playa", "Barcelona", 5, 4, 5700000, "Incluye hotel cerca de la playa y visitas a museos y Sagrada Familia.")
+agregar_paquete(9, "Naturaleza y Cultura", "Sidney", 8, 7, 9500000, "Incluye alojamiento, tours por la ciudad y visita a las Montañas Azules.")
+agregar_paquete(10, "Escape al Caribe", "La Habana", 6, 5, 5100000, "Incluye hotel en el Malecón, visitas a sitios históricos y experiencia de salsa cubana.")
+
+
+
+
 
 #Lógica
 def hoteles_destinos_separados():
@@ -265,7 +319,7 @@ while True: #Evitar una opción fuera del rango
   elif opcion == 2:
     print("Redirigiendo...")
     time.sleep(4)
-    print("Sección de paquetes") #Cambiar línea a nombre función de Oscar.
+    seccion_paquetes()
     break
   elif opcion == 3:
     print("Gracias por acceder a nuestros servicios.")
