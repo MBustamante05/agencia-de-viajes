@@ -136,14 +136,14 @@ def pago_paquete(precio_total):
     print("2. PSE")
     print("-----------------------------------------")
     while True:
-        opcion_pago = int(input("Ingrese el número de la opción con la cual desea continuar: "))
-        if opcion_pago == 1:
+        opcion_pago = input("Ingrese el número de la opción con la cual desea continuar: ")
+        if opcion_pago == "1":
             print("-----------------------------------------")
             nombre = input("Ingrese su nombre completo: ")
             tarjeta_num = input("Ingrese el número de la tarjeta de pago: ")
             factura_paquete(nombre,precio_total)
             break
-        elif opcion_pago == 2:
+        elif opcion_pago == "2":
             print("-----------------------------------------")
             banco_nombre = input("Escribir nombre del banco: ")
             nombre = input("Ingrese su nombre completo: ")
@@ -166,8 +166,8 @@ def factura_paquete(nombre, precio_total):
     print("1. Recibir factura.")
     print("2. Salir.")
     while True:
-        opcion_factura = int(input("Ingrese el número de la opción con la cual desea continuar: "))
-        if opcion_factura == 1:
+        opcion_factura = input("Ingrese el número de la opción con la cual desea continuar: ")
+        if opcion_factura == "1":
             time.sleep(3)
             print("-----------------------------------------")
             print("---------------PAGO ACEPTADO-------------")
@@ -179,7 +179,7 @@ def factura_paquete(nombre, precio_total):
             print("-----------------------------------------")
 
             break
-        elif opcion_factura == 2:
+        elif opcion_factura == "2":
             print("Gracias por utilizar nuestros servicios. Vuelve pronto!!")
             break
         else:
@@ -253,12 +253,12 @@ def funcion_para_factura(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso
     print("1. Recibir factura.")
     print("2. Salir.")
     while True:
-        opcion_factura = int(input("Ingrese el número de la opción con la cual desea continuar: "))
-        if opcion_factura == 1:
+        opcion_factura = input("Ingrese el número de la opción con la cual desea continuar: ")
+        if opcion_factura == "1":
             time.sleep(3)
             factura_usuario(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
             break
-        elif opcion_factura == 2:
+        elif opcion_factura == "2":
             print("Gracias por utilizar nuestros servicios. Vuelve pronto!!")
             break
         else:
@@ -272,15 +272,15 @@ def pago(destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total):
     print("2. PSE")
     print("-----------------------------------------")
     while True:
-        opcion_pago = int(input("Ingrese el número de la opción con la cual desea continuar: "))
+        opcion_pago = input("Ingrese el número de la opción con la cual desea continuar: ")
         time.sleep(3)
-        if opcion_pago == 1:
+        if opcion_pago == "1":
             print("-----------------------------------------")
             nombre = input("Ingrese su nombre completo: ")
             tarjeta_num = input("Ingrese el número de la tarjeta de pago: ")
             funcion_para_factura(nombre, destino, hotel, vuelo, fecha_ida, fecha_regreso, precio_total)
             break
-        elif opcion_pago == 2:
+        elif opcion_pago == "2":
             print("-----------------------------------------")
             banco_nombre = input("Escribir nombre del banco: ")
             nombre = input("Ingrese su nombre completo: ")
@@ -363,10 +363,13 @@ def hoteles_destinos_separados():
     print("-----------------------------------------")
     #Evitar colocar un index fuera del rango
     while True:
-        hotel_usuario = int(input("Ingrese el número del hotel en el cual desea hospedarse: "))
-        if hotel_usuario == 1 or hotel_usuario == 2 or hotel_usuario == 3:
-            break
-        else:
+        try:
+            hotel_usuario = int(input("Ingrese el número del hotel en el cual desea hospedarse: "))
+            if hotel_usuario == 1 or hotel_usuario == 2 or hotel_usuario == 3:
+                break
+            else:
+                print("Opción inválida.\n")
+        except ValueError:
             print("Opción inválida.\n")
 
     #CALENDARIO
@@ -399,18 +402,18 @@ print("2. Escoger paquetes en oferta.")
 print("3. Salir.")
 print("-----------------------------------------")
 while True: #Evitar una opción fuera del rango
-  opcion = int(input("Ingrese el número de la opción con la cual desea continuar: "))
-  if opcion == 1:
+  opcion = input("Ingrese el número de la opción con la cual desea continuar: ")
+  if opcion == "1":
     print("Redirigiendo...")
     time.sleep(1)
     hoteles_destinos_separados()
     break
-  elif opcion == 2:
+  elif opcion == "2":
     print("Redirigiendo...")
     time.sleep(4)
     seccion_paquetes()
     break
-  elif opcion == 3:
+  elif opcion == "3":
     print("Gracias por acceder a nuestros servicios.")
     break
   else:
