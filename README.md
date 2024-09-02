@@ -16,11 +16,11 @@ En este módulo, los usuarios pueden buscar y reservar hoteles de forma independ
 ### 4. Paquetes de Viaje
 Además de las reservas de hotel, ofrecemos paquetes completos que incluyen vuelos, alojamiento, transporte y actividades. Los usuarios pueden explorar diferentes opciones de paquetes según su presupuesto y preferencias.
 
-### 5. Atención al Cliente
-Nuestro módulo de atención al cliente asegura que los usuarios puedan recibir soporte en cualquier momento. A través de un chat gestionado o por correo electrónico, los usuarios pueden resolver sus dudas y problemas relacionados con sus viajes.
-
-### 6. Comentarios y Valoraciones
+### 5. Comentarios y Valoraciones
 Este módulo permite a los usuarios dejar comentarios y valoraciones sobre su experiencia con los servicios de la agencia.
+
+### 6. Atención al Cliente
+Nuestro módulo de atención al cliente asegura que los usuarios puedan recibir soporte en cualquier momento. A través de un chat gestionado o por correo electrónico, los usuarios pueden resolver sus dudas y problemas relacionados con sus viajes.
 
 ## Tecnologías Utilizadas
 - **Python** 
@@ -32,6 +32,6 @@ Para utilizar cada uno de los módulos dar click en "Run python file" (Visual st
 - Entrar al módulo de **Registro** y crear una cuenta.
 - Ir al módulo de **suscripcion de planes personalizados** (sólo si desea integrarse de forma **exclusiva** en la agencia)
 - Ir al módulo de **Hoteles y reservas de vuelos** (también se encuentran los paquetes de viaje) para gestionar su viaje.
-- Si tiene algún problema, queja o solicitud, ingrese al módulo de **Atención al cliente**.
-- Por último, ingrese al módulo de **Comentarios y valoraciones** y deje su reseña.
+- Ingrese al módulo de **Comentarios y valoraciones** y deje su reseña.
+- Por último, Si tiene algún problema, queja o solicitud, ingrese al módulo de **Atención al cliente**.
 
