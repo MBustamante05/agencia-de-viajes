@@ -8,4 +8,4 @@ contraseña_usuario = stdiomask.getpass("Ingresa tu contraseña: ","*")
 print("\nHas sido registrado exitosamente!")
 #Mensaje de bienvenida al software
 print("\n---------------------------------")
-print(f"Bienvenido/a, {nombre_usuario}.")
+print(f"Bienvenido/a a Skyline Adventures, {nombre_usuario}.")
